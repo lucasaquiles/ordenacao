@@ -1,0 +1,148 @@
+
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+
+		var array = new Array(10,1,2,4,5,3,9,30);
+		console.log("antes: "+ array);
+		function bubble(array){
+
+			for(var i = 0; i < array.length; i++){
+
+				var prox = array[i+1];
+				var atual = array[i];
+
+				if(prox < atual){
+					var tmp = atual;
+					array[i] = prox;
+					array[i+1] = tmp;
+
+					i = 0;
+				}
+			}
+		}
+
+		function selectedSort(array){
+			console.log("selection sort");
+			console.log("antes: "+array);
+			var selected;
+			var ind = 0;
+
+			for(var i = ind ; i < array.length; i++){
+				for(var j = i+1; j < array.length; j++){
+					
+					if(array[j] < [array[i]]){
+
+						var tmp = array[i];
+						array[i] = array[j];
+						array[j] = tmp;
+						ind++;
+					}	
+				}
+
+			}
+			console.log("depois: "+array);
+		}
+
+		
+		bubble(array);
+		console.log("depois: "+array);
+
+		binarySearch(30);
+		buscaLinear(9);
+
+		function binarySearch(target){
+			console.log("searching for "+target);
+			
+			var left = 0;
+			var right = array.length;
+			var  meio = new Int32Array();
+			var searching = true;
+				while(searching){
+					meio = (left + right)/ 2;
+					meio = Math.floor(meio);
+					if(target > array[meio]){
+
+							left = meio + 1;
+							//i = left;
+							console.log(left);
+					}else if(target < array[meio]){
+
+							right = meio - 1;
+							console.log(right)
+					}else{
+							searching = false;
+							console.log("Achou! "+target + " == "+array[meio]);
+					}
+				}
+		}
+
+		function buscaLinear(target){
+
+			for(var i =0 ; i < array.length; i++){
+
+				if(array[i] == target){
+					console.log("Achou! "+target + " == "+array[i]);
+				}
+			}
+		}
+
+		function quickSort(array, inicio, fim){
+
+			var i, j, pivo, aux;
+			
+			i = inicio;
+			j = fim;
+
+			pivo= parseInt(( ( inicio + fim) /2));
+
+			while(i < j){
+
+				while(array[i] < array[pivo]){
+
+					i++;
+				}
+
+				while(array[j] > array[pivo]){
+
+					j--;
+				}
+
+				if(i <= j){
+
+					aux = array[i];
+					array[i] = array[j]; 
+					array[j] = aux;
+					i++;
+					j--;
+				}
+			}
+
+			if(j > inicio){
+				quickSort(array, inicio,j)
+			}
+
+			if(i < fim){
+				quickSort(array, i, fim);
+			}
+
+			
+		}
+
+
+		selectedSort(new Array(30,0, 200, 100, 219, 302, 4,3,2,1));
+
+		console.log("-----");
+
+		var array2 = new Array(800, 789, 310, 0, 5,1,4,2,3);
+		console.log("antes:"+ array2);
+		
+		quickSort(array2, 0, array2.length-1);
+		console.log("depois:"+ array2)
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
